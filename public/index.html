@@ -6,24 +6,41 @@
 	<title>Justin Clagg | URL Shortener</title>
 	<meta name="description" content="">
 	<meta name="author" content="Justin Clagg">
-	<link href="./main.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="https://justinclagg.com/css/project-footer.css">
+	<!--<link href="./main.css" rel="stylesheet" type="text/css">-->
 </head>	
 <body>
-	<form id="link-form">
-		<label>
-			<div>Your URL</div>
-			<input
-				id="link-input" 
-				type="text"
-				pattern="^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$"
-				title="Enter a valid URL."
-				autofocus="true"
-				required="true" 
-				/>
-		</label>
-		<button type="submit">Submit</button>
-	</form>
-	<input id="short-link" readonly="true" />
+	<div class="container">
+		<h1>URL Shortener</h1>
+		<form id="link-form" class="link-form">
+			<label class="label-container" id="label-container">
+				<span class="label">Enter a link</span>
+				<input
+					id="link-input"
+					class="link-input"
+					type="text"
+					pattern="^(http(s)?:\/\/)?(www\.)?[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$"
+					title="Enter a valid URL."
+					autofocus="true"
+					autocomplete="off"
+					required="true" 
+					/>
+			</label>
+			<button type="submit" class="submit-btn">Submit</button>
+		</form>
+		<div class="short-link-container">
+			<input id="short-link" class="link-input" readonly="true" />
+			<button id="copy-btn" class="copy-btn">Copy</button>
+		</div>
+		<div class="about-container">
+			<p>Enter a link in the form above, or use the API by sending a request to: <br /> http://localhost:3000/url/&lt;Your Link&gt;</p>
+		</div>
+	</div>
+	<footer class="project-footer">
+		<p>Copyright © 2017 Justin Clagg</p>
+		<a href="https://www.justinclagg.com">Portfolio</a>
+		<a href="https://github.com/justinclagg/url-shortener" target="_blank">Source</a>
+	</footer>
 	<script src="./app.js" type="text/javascript"></script>
 </body>
 </html>

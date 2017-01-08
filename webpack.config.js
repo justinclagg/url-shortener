@@ -1,17 +1,32 @@
+const webpack = require('webpack');
 const path = require('path');
+const SRC_DIR = path.resolve(__dirname, './client');
+const DIST_DIR = path.resolve(__dirname, './public');
 
 const config = {
-	entry: './client/index.js',
+	entry: [
+		path.resolve(SRC_DIR, 'index.js'),
+		'webpack-hot-middleware/client'
+	],
 	output: {
-		path: path.resolve(__dirname, 'public'),
-		filename: 'app.js'
+		path: DIST_DIR,
+		filename: 'app.js',
+		publicPath: '/'
 	},
+	plugins: [
+		new webpack.HotModuleReplacementPlugin()
+	],
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
+				include: SRC_DIR,
 				use: 'babel-loader'
+			},
+			{
+				test: /\.scss$/,
+				include: path.resolve(SRC_DIR, 'css'),
+				use: ['style-loader', 'css-loader', 'sass-loader']
 			}
 		]
 	}

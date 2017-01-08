@@ -1,0 +1,109 @@
+$main-bg: #1892B4;
+$white-border: 1px solid #FFF;
+$lg-font: 25px;
+
+body {
+	background-color: $main-bg;
+	color: #FFF;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.container {
+	margin-top: 150px;
+}
+
+.link-form {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.label-container {
+	position: relative;
+}
+
+.link-input {
+	margin-bottom: 10px;
+	background-color: #FFF;
+	color: #000;
+	font-size: $lg-font;
+
+	&::selection {
+		background: $main-bg;	
+	}
+}
+
+.label-container {
+	input {
+		border: $white-border;
+	}
+
+	span {
+		position: absolute;
+		top: -5px;
+		left: 20px;
+		cursor: text;
+		color: #888;
+		font-size: $lg-font;
+		transition: all 150ms ease;
+	}
+}
+
+.label-container.filled {
+	input {
+		&:valid {
+			border: 3px solid #42d142;
+		}
+
+		&:invalid {
+			border: 3px solid #ff8e7a;
+		}
+	}
+
+	span {
+		position: absolute;
+		top: -5px;
+		left: 20px;
+		transform: translateY(-200%);
+		cursor: text;
+		color: #FFF;
+		font-size: 20px;
+	}
+}
+
+.submit-btn {
+	background-color: transparent;
+	border: $white-border;
+	color: #FFF;
+	width: 125px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #FFF;
+		color: $main-bg;
+	}
+}
+
+.link-input, .submit-btn {
+	padding: 15px 20px;
+	font-size: $lg-font;
+}
+
+.short-link-container {
+	display: none;
+	@extend .link-form;
+}
+
+.copy-btn {
+	@extend .submit-btn;
+}
+
+.about-container {
+	margin: 0 auto;
+	margin-top: 100px;
+	max-width: 800px;
+	text-align: center;
+}
