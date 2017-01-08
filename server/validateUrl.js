@@ -13,7 +13,7 @@ module.exports = function validateUrl() {
 		}
 		else {
 			// Invalid url
-			res.status(400).send('Invalid link format');
+			res.status(400).send({error: 'Invalid link format'});
 		}
 	};
 };
