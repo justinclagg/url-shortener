@@ -1,5 +1,6 @@
-const Link = require('./linkSchema');
 const shortid = require('shortid');
+const Link = require('./linkSchema');
+const validateUrl = require('./validateUrl');
 
 module.exports = (app) => {
 
@@ -15,29 +16,32 @@ module.exports = (app) => {
 				res.redirect(link.userLink);
 			}
 			else {
-				res.status(404).send('Invalid Link');
+				res.status(404).send('Link does not exist');
 			}
 		});
 	});
 
-	app.get('/url/*', (req, res, next) => {
-		const userLink = req.params[0];
-		Link.findOne({ userLink }, (err, link) => {
-			if (err) return next(err);
-			if (link) {
-				// Send a stored link if it exists
-				res.status(200).send(link);
-			}
-			else {
-				// Otherwise save a new link
-				const linkID = shortid.generate();
-				const shortLink = `http://${req.headers.host}/${linkID}`;
-				const newLink = new Link({ userLink, linkID, shortLink });
-				newLink.save((err, newLink) => {
-					if (err) return next(err);
-					res.status(201).send(newLink);
-				});
-			}
-		});
-	});
+	app.all('/url/*', 
+		validateUrl(),
+		(req, res, next) => {
+			const { userLink } = req.params;
+			Link.findOne({ userLink }, (err, link) => {
+				if (err) return next(err);
+				if (link) {
+					// Send a stored link if it exists
+					res.status(200).send(link);
+				}
+				else {
+					// Otherwise save a new link
+					const linkID = shortid.generate();
+					const shortLink = `http://${req.headers.host}/${linkID}`;
+					const newLink = new Link({ userLink, linkID, shortLink });
+					newLink.save((err, newLink) => {
+						if (err) return next(err);
+						res.status(201).send(newLink);
+					});
+				}
+			});
+		}
+	);
 };
