@@ -6,7 +6,7 @@ module.exports = function validateUrl() {
 			url = 'http://' + url;
 		}
 
-		if (/^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/.test(url)) {
+		if (/^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/i.test(url)) {
 			// Valid url
 			req.params.userLink = url;
 			return next();
