@@ -1,11 +1,12 @@
 const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SRC_DIR = path.resolve(__dirname, './client');
+const DIST_DIR = path.resolve(__dirname, './public');
 
 const config = {
-	entry: './client/index.js',
+	entry: path.resolve(SRC_DIR, 'index.js'),
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: DIST_DIR,
 		filename: 'app.js',
 		publicPath: '/'
 	},
@@ -17,11 +18,11 @@ const config = {
 				use: 'babel-loader'
 			},
 			{
-				test: /\.css$/, // Figure out how to do this with sass
-				include: /client/,
+				test: /\.scss$/,
+				include: SRC_DIR,
 				loader: ExtractTextPlugin.extract({
 					fallbackLoader: 'style-loader',
-					loader: 'css-loader'
+					loader: 'css-loader!sass-loader'
 				})
 			}
 		]

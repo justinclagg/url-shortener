@@ -25,7 +25,7 @@ const config = {
 			},
 			{
 				test: /\.scss$/,
-				include: path.resolve(SRC_DIR, 'css'),
+				include: SRC_DIR,
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			}
 		]

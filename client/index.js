@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-require('./css/main.scss');
+require('./main.scss');
 
 document.addEventListener('DOMContentLoaded', () => {
 	const labelContainer = document.getElementById('label-container');

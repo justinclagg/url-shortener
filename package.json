@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev-build && npm run dev-server",
     "dev-build": "webpack",
-    "prod-build": "webpack -p",
+    "prod-build": "webpack -p --config ./webpack.prod.config.js",
     "dev-server": "nodemon server.js",
     "prod-server": "cross-env NODE_ENV=production node ./server.js"
   },

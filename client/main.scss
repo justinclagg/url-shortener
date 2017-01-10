@@ -2,24 +2,36 @@ $main-bg: #1892B4;
 $white-border: 1px solid #FFF;
 $lg-font: 25px;
 
+@mixin mobile {
+	@media only screen and (max-width: 700px) {
+		@content;
+	}
+}
+
 body {
 	background-color: $main-bg;
 	color: #FFF;
-	font-family: 'Lato', 'sans-serif'
+	font-family: 'Lato', 'sans-serif';
+	padding: 0 10px;
 }
 
 h1 {
 	text-align: center;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 }
 
 .container {
-	margin-top: 150px;
+	margin-top: 125px;
+
+	@include mobile {
+		margin-top: 50px;
+	}
 }
 
 .link-form {
 	max-width: 500px;
 	margin: 0 auto;
+	margin-bottom: 10px;
 }
 
 .label-container {
@@ -29,6 +41,7 @@ h1 {
 .link-input {
 	margin-bottom: 10px;
 	background-color: #FFF;
+	max-width: 300px;
 	color: #000;
 	font-size: $lg-font;
 
@@ -103,8 +116,7 @@ h1 {
 }
 
 .about-container {
-	margin: 0 auto;
-	margin-top: 100px;
+	margin: 100px auto 50px auto;
 	max-width: 800px;
 	text-align: center;
 }

@@ -1,2 +1,0 @@
-1. Separate css for production code
-3. Make input fields responsive (flexbox: https://jsfiddle.net/1jxkyLdv/)
