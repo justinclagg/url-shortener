@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const shortLink = document.getElementById('short-link');
 	const copyBtn = document.getElementById('copy-btn');
 
-	linkInput.addEventListener('keyup', (event) => {
+	// Check if the link input field is empty on keyup to style the label
+	linkInput.addEventListener('keyup', () => {
 		const empty = !linkInput.value;
 		if (empty) {
 			labelContainer.classList.remove('filled');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
+	// Send submitted links to the server, and display the shortened link after getting a response
 	linkForm.addEventListener('submit', (event) => {
 		event.preventDefault();
 		const userLink = linkInput.value;
@@ -32,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	});
 
+	// Copy the shortened link to the user's clipboard
 	copyBtn.addEventListener('click', () => {
 		shortLink.select();
 		const copySuccess = document.execCommand('copy');
-		// display dialog(copySuccess)
+		// Can use copySuccess to display an appropriate dialog
 	});
-
 });
